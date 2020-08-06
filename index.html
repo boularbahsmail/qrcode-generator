@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CODE</title>
+    <style>
+        body {
+            padding: 0px;
+            font-family: sans-serif;
+        }
+        input {
+            height: 45px;
+            width: 400px;
+            border: 2px solid lightgray;
+            border-radius: 5px;
+            color: gray;
+            outline: none;
+            padding: 0 10px;
+            font-size: 20px;
+        }
+
+        #qrcode {
+            padding: 35px;
+            margin: 30px;
+            border: 2px solid white;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #262626;
+            font-weight: initial;
+        }
+        button {
+            width: 422px;
+            border: none;
+            background-color: royalblue;
+            color: white;
+            border-radius: 5px;
+            margin: 10px 0px;
+            font-size: 20px;
+            height: 45px;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+    
+        <center>
+            <h1>QR CODE creator</h1>
+        <input type="text" id="qr-data" onchange="generate()" placeholder="Enter link" /><br>
+        <button onclick="generate()">Generate</button>
+        <div id="qrcode"></div>
+        <h4>© 2020 BOULARBAH ISMAIL</h4>
+    </center>
+</body>
+    <script src="qrcode.min.js"></script>
+    <script>
+        var qrdata = document.getElementById("qr-data");
+        var qrcode = new QRCode(document.getElementById('qrcode'));
+        function generate() {
+            var data = qrdata.value;
+            if(data.includes("http")) {
+                qrcode.makeCode(data);
+            } else {
+                alert("Please enter a link");
+                location.reload();
+            }
+        }
+    </script>
+</html>
